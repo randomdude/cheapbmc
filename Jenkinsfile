@@ -18,6 +18,6 @@ node("VS2017")
 	dir("code")
 	{
 		bat "\"${tool 'VS2017'}\" panelctrl.sln /p:Configuration=Debug /p:Platform=\"x86\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-		archiveArtifacts artifacts: 'Debug\panelctrl.bin', onlyIfSuccessful: true
+		archiveArtifacts artifacts: 'Debug/panelctrl.bin', onlyIfSuccessful: true
 	}
 }
