@@ -71,7 +71,7 @@ U 1 1 607F43C9
 P 10750 1250
 F 0 "J3" H 10800 1800 50  0000 R CNN
 F 1 "atxpanel" H 10900 1700 50  0000 R CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x10_P2.54mm_Horizontal" H 10750 1250 50  0001 C CNN
+F 2 "symbols:atx-panel-horz-inverted" H 10750 1250 50  0001 C CNN
 F 3 "" H 10750 1250 50  0001 C CNN
 	1    10750 1250
 	-1   0    0    1   
@@ -390,7 +390,7 @@ U 1 1 60826863
 P 9600 1250
 F 0 "J2" H 9650 1800 50  0000 R CNN
 F 1 "atxpanel" H 9750 1700 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Horizontal" H 9600 1250 50  0001 C CNN
+F 2 "symbols:atx-panel" H 9600 1250 50  0001 C CNN
 F 3 "" H 9600 1250 50  0001 C CNN
 	1    9600 1250
 	-1   0    0    1   
