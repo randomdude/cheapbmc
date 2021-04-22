@@ -17,7 +17,8 @@ node("VS2017")
 
 	dir("code")
 	{
-		bat "\"${tool 'VS2017'}\" panelctrl.sln /p:Configuration=Debug /p:Platform=\"x86\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+		def codeDir = pwd()
+		bat "\"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\opspbqse.n3l\VMBuild.exe\" -builder.verbose=true -builder.build=true -builder.rebuild=true -builder.upload=false  -builder.verbose_warnings=true -builder.project_path=\"${codeDir}\panelctrl.vcxproj\" -builder.board_id=esp8266"
 		archiveArtifacts artifacts: 'Debug/panelctrl.bin', onlyIfSuccessful: true
 	}
 }
