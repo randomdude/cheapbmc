@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="panelctrl.ino" />
+    <None Include="code.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.panelctrl.vsarduino.h">
