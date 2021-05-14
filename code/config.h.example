@@ -1,0 +1,20 @@
+#define CFG_WIFI_SSID "stripysocks"
+#define CFG_WIFI_PASSWORD "..."
+
+static const char serverCert[] PROGMEM = R"EOF(
+-----BEGIN CERTIFICATE-----
+
+-----END CERTIFICATE-----
+)EOF";
+
+static const char serverKey[] PROGMEM = R"EOF(
+-----BEGIN RSA PRIVATE KEY-----
+
+-----END RSA PRIVATE KEY-----
+)EOF";
+
+static const char clientAuthCert[] PROGMEM = R"EOF(
+-----BEGIN CERTIFICATE-----
+
+-----END CERTIFICATE-----
+)EOF";
