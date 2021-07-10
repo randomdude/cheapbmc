@@ -19,7 +19,7 @@ U 1 1 607EEBAA
 P 1850 4850
 F 0 "Q2" H 2041 4896 50  0000 L CNN
 F 1 "BC547" H 2041 4805 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 2050 4775 50  0001 L CIN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2050 4775 50  0001 L CIN
 F 3 "http://www.fairchildsemi.com/ds/BC/BC547.pdf" H 1850 4850 50  0001 L CNN
 	1    1850 4850
 	1    0    0    -1  
@@ -29,11 +29,11 @@ L Relay:SILxx-1Axx-71x K2
 U 1 1 607EF4FE
 P 2350 4350
 F 0 "K2" V 1783 4350 50  0000 C CNN
-F 1 "SILxx-1Axx-71x" V 1874 4350 50  0000 C CNN
+F 1 "SILxx-1Axx-71x" V 2050 3750 50  0000 C CNN
 F 2 "Relay_THT:Relay_SPST_StandexMeder_SIL_Form1A" H 2700 4300 50  0001 L CNN
 F 3 "https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_SIL.pdf" H 2350 4350 50  0001 C CNN
 	1    2350 4350
-	0    1    1    0   
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	1950 4650 1950 4550
@@ -92,7 +92,7 @@ U 1 1 607F7906
 P 1850 2350
 F 0 "Q1" H 2041 2396 50  0000 L CNN
 F 1 "BC547" H 2041 2305 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 2050 2275 50  0001 L CIN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 2050 2275 50  0001 L CIN
 F 3 "http://www.fairchildsemi.com/ds/BC/BC547.pdf" H 1850 2350 50  0001 L CNN
 	1    1850 2350
 	1    0    0    -1  
@@ -102,11 +102,11 @@ L Relay:SILxx-1Axx-71x K1
 U 1 1 607F7910
 P 2350 1850
 F 0 "K1" V 1783 1850 50  0000 C CNN
-F 1 "SILxx-1Axx-71x" V 1874 1850 50  0000 C CNN
+F 1 "SILxx-1Axx-71x" V 2000 1250 50  0000 C CNN
 F 2 "Relay_THT:Relay_SPST_StandexMeder_SIL_Form1A" H 2700 1800 50  0001 L CNN
 F 3 "https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_SIL.pdf" H 2350 1850 50  0001 C CNN
 	1    2350 1850
-	0    1    1    0   
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	1950 2150 1950 2050
@@ -149,60 +149,37 @@ RSTCON_N
 Text GLabel 1150 2350 0    50   Input ~ 0
 RSTCON_TTL
 Wire Wire Line
-	1950 1650 2000 1650
-Wire Wire Line
 	2650 1650 2700 1650
 $Comp
 L pspice:DIODE D1
 U 1 1 607FBC75
-P 2350 900
-F 0 "D1" H 2350 635 50  0000 C CNN
-F 1 "DIODE" H 2350 726 50  0000 C CNN
-F 2 "Diode_THT:D_A-405_P7.62mm_Horizontal" H 2350 900 50  0001 C CNN
-F 3 "~" H 2350 900 50  0001 C CNN
-	1    2350 900 
-	-1   0    0    1   
+P 3600 2000
+F 0 "D1" H 3600 1735 50  0000 C CNN
+F 1 "DIODE" H 3600 1826 50  0000 C CNN
+F 2 "Diode_THT:D_A-405_P7.62mm_Horizontal" H 3600 2000 50  0001 C CNN
+F 3 "~" H 3600 2000 50  0001 C CNN
+	1    3600 2000
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	2550 900  2700 900 
+	3600 2200 3600 2350
 Wire Wire Line
-	2700 900  2700 1650
-Wire Wire Line
-	2150 900  2000 900 
-Wire Wire Line
-	2000 900  2000 1650
-Connection ~ 2000 1650
-Wire Wire Line
-	2000 1650 2050 1650
+	3600 1800 3600 1650
 $Comp
 L pspice:DIODE D2
 U 1 1 607FC61A
-P 2350 3400
-F 0 "D2" H 2350 3665 50  0000 C CNN
-F 1 "DIODE" H 2350 3574 50  0000 C CNN
-F 2 "Diode_THT:D_A-405_P7.62mm_Horizontal" H 2350 3400 50  0001 C CNN
-F 3 "~" H 2350 3400 50  0001 C CNN
-	1    2350 3400
-	1    0    0    -1  
+P 3600 4550
+F 0 "D2" H 3600 4815 50  0000 C CNN
+F 1 "DIODE" H 3600 4724 50  0000 C CNN
+F 2 "Diode_THT:D_A-405_P7.62mm_Horizontal" H 3600 4550 50  0001 C CNN
+F 3 "~" H 3600 4550 50  0001 C CNN
+	1    3600 4550
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	2650 4150 2700 4150
+	3600 4900 3600 4750
 Wire Wire Line
-	2050 4150 2000 4150
-Wire Wire Line
-	2000 4150 2000 3400
-Wire Wire Line
-	2000 3400 2150 3400
-Connection ~ 2000 4150
-Wire Wire Line
-	2000 4150 1950 4150
-Wire Wire Line
-	2550 3400 2700 3400
-Wire Wire Line
-	2700 3400 2700 4150
-Connection ~ 2700 4150
-Wire Wire Line
-	2700 4150 2750 4150
+	3600 4350 3600 4200
 $Comp
 L Device:R R1
 U 1 1 607FE31D
@@ -248,17 +225,6 @@ Text GLabel 7050 2850 2    50   Output ~ 0
 RSTCON_TTL
 Text GLabel 7050 2750 2    50   Output ~ 0
 PWRBTN_TTL
-$Comp
-L power:+5V #PWR0105
-U 1 1 608136DB
-P 4700 3300
-F 0 "#PWR0105" H 4700 3150 50  0001 C CNN
-F 1 "+5V" H 4715 3473 50  0000 C CNN
-F 2 "" H 4700 3300 50  0001 C CNN
-F 3 "" H 4700 3300 50  0001 C CNN
-	1    4700 3300
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR0106
 U 1 1 60814A75
@@ -352,36 +318,6 @@ F 3 "" H 9500 2650 50  0001 C CNN
 	1    9500 2650
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:LED D3
-U 1 1 6081FCCB
-P 6850 2750
-F 0 "D3" H 6850 2550 50  0000 C CNN
-F 1 "LED" H 6850 2650 50  0000 C CNN
-F 2 "LED_THT:LED_D3.0mm" H 6850 2750 50  0001 C CNN
-F 3 "~" H 6850 2750 50  0001 C CNN
-	1    6850 2750
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:LED D4
-U 1 1 60820B99
-P 6850 2850
-F 0 "D4" H 6850 3050 50  0000 C CNN
-F 1 "LED" H 6850 2950 50  0000 C CNN
-F 2 "LED_THT:LED_D3.0mm" H 6850 2850 50  0001 C CNN
-F 3 "~" H 6850 2850 50  0001 C CNN
-	1    6850 2850
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	6650 2750 6700 2750
-Wire Wire Line
-	6700 2850 6650 2850
-Wire Wire Line
-	7000 2850 7050 2850
-Wire Wire Line
-	7050 2750 7000 2750
 Wire Wire Line
 	7050 2150 6650 2150
 $Comp
@@ -408,50 +344,31 @@ PWRLED_N
 Text GLabel 9250 1400 0    50   UnSpc ~ 0
 PWRLED_P
 $Comp
-L Connector:Conn_01x03_Male J1
-U 1 1 60828E1D
-P 7100 950
-F 0 "J1" H 7000 950 50  0000 C CNN
-F 1 "Conn_01x03_Male" H 6700 1050 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7100 950 50  0001 C CNN
-F 3 "~" H 7100 950 50  0001 C CNN
-	1    7100 950 
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:+5V #PWR0109
 U 1 1 6082A6E4
-P 7450 800
-F 0 "#PWR0109" H 7450 650 50  0001 C CNN
-F 1 "+5V" H 7465 973 50  0000 C CNN
-F 2 "" H 7450 800 50  0001 C CNN
-F 3 "" H 7450 800 50  0001 C CNN
-	1    7450 800 
+P 7900 1150
+F 0 "#PWR0109" H 7900 1000 50  0001 C CNN
+F 1 "+5V" H 7915 1323 50  0000 C CNN
+F 2 "" H 7900 1150 50  0001 C CNN
+F 3 "" H 7900 1150 50  0001 C CNN
+	1    7900 1150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0110
 U 1 1 6082ADF4
-P 7450 1100
-F 0 "#PWR0110" H 7450 850 50  0001 C CNN
-F 1 "GND" H 7455 927 50  0000 C CNN
-F 2 "" H 7450 1100 50  0001 C CNN
-F 3 "" H 7450 1100 50  0001 C CNN
-	1    7450 1100
+P 7450 1000
+F 0 "#PWR0110" H 7450 750 50  0001 C CNN
+F 1 "GND" H 7455 827 50  0000 C CNN
+F 2 "" H 7450 1000 50  0001 C CNN
+F 3 "" H 7450 1000 50  0001 C CNN
+	1    7450 1000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7300 850  7450 850 
+	7450 1000 7450 950 
 Wire Wire Line
-	7450 850  7450 800 
-Wire Wire Line
-	7450 1100 7450 1050
-Wire Wire Line
-	7450 1050 7300 1050
-Wire Wire Line
-	5050 3450 4700 3450
-Wire Wire Line
-	4700 3300 4700 3450
+	7450 950  7300 950 
 $Comp
 L Mechanical:MountingHole H1
 U 1 1 6085F63D
@@ -494,6 +411,139 @@ F 1 "MountingHole" H 1100 7555 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 1000 7600 50  0001 C CNN
 F 3 "~" H 1000 7600 50  0001 C CNN
 	1    1000 7600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6650 2850 7050 2850
+Wire Wire Line
+	6650 2750 7050 2750
+Wire Wire Line
+	1950 4150 2050 4150
+Wire Wire Line
+	2650 4150 2750 4150
+$Comp
+L power:+5V #PWR0111
+U 1 1 609D9944
+P 3600 4200
+F 0 "#PWR0111" H 3600 4050 50  0001 C CNN
+F 1 "+5V" H 3615 4373 50  0000 C CNN
+F 2 "" H 3600 4200 50  0001 C CNN
+F 3 "" H 3600 4200 50  0001 C CNN
+	1    3600 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0112
+U 1 1 609D9DB0
+P 3600 4900
+F 0 "#PWR0112" H 3600 4650 50  0001 C CNN
+F 1 "GND" H 3605 4727 50  0000 C CNN
+F 2 "" H 3600 4900 50  0001 C CNN
+F 3 "" H 3600 4900 50  0001 C CNN
+	1    3600 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1950 1650 2050 1650
+$Comp
+L power:GND #PWR0113
+U 1 1 609DC228
+P 3600 2350
+F 0 "#PWR0113" H 3600 2100 50  0001 C CNN
+F 1 "GND" H 3605 2177 50  0000 C CNN
+F 2 "" H 3600 2350 50  0001 C CNN
+F 3 "" H 3600 2350 50  0001 C CNN
+	1    3600 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0114
+U 1 1 609DC5CF
+P 3600 1650
+F 0 "#PWR0114" H 3600 1500 50  0001 C CNN
+F 1 "+5V" H 3615 1823 50  0000 C CNN
+F 2 "" H 3600 1650 50  0001 C CNN
+F 3 "" H 3600 1650 50  0001 C CNN
+	1    3600 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x03_Male J4
+U 1 1 609EAC84
+P 7900 1350
+F 0 "J4" H 7800 1350 50  0000 C CNN
+F 1 "Conn_01x03_Male" V 7800 1350 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 7900 1350 50  0001 C CNN
+F 3 "~" H 7900 1350 50  0001 C CNN
+	1    7900 1350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7800 1150 7800 850 
+Wire Wire Line
+	7300 850  7800 850 
+Wire Wire Line
+	5050 2250 4800 2250
+Wire Wire Line
+	4800 2250 4800 1500
+Wire Wire Line
+	4800 1500 8200 1500
+Wire Wire Line
+	8200 1500 8200 850 
+Wire Wire Line
+	8200 850  8000 850 
+Wire Wire Line
+	8000 850  8000 1150
+Wire Wire Line
+	7800 1150 7650 1150
+Wire Wire Line
+	7650 1150 7650 1400
+Wire Wire Line
+	7650 1400 4600 1400
+Wire Wire Line
+	4600 1400 4600 3450
+Connection ~ 7800 1150
+Wire Wire Line
+	4600 3450 5050 3450
+Text GLabel 6500 4300 1    50   UnSpc ~ 0
+PWRLED_N
+Text GLabel 6500 4600 3    50   UnSpc ~ 0
+PWRLED_P
+$Comp
+L Switch:SW_Push SW1
+U 1 1 609FD1B8
+P 7250 4450
+F 0 "SW1" V 7204 4598 50  0000 L CNN
+F 1 "SW_Push" V 7295 4598 50  0000 L CNN
+F 2 "Button_Switch_THT:SW_Tactile_SKHH_Angled" H 7250 4650 50  0001 C CNN
+F 3 "~" H 7250 4650 50  0001 C CNN
+	1    7250 4450
+	0    1    1    0   
+$EndComp
+Text GLabel 7250 4250 1    50   UnSpc ~ 0
+PWRBTN_N
+Text GLabel 7250 4650 3    50   UnSpc ~ 0
+PWRBTN_P
+$Comp
+L Device:LED D3
+U 1 1 609FF284
+P 6500 4450
+F 0 "D3" V 6447 4530 50  0000 L CNN
+F 1 "LED" V 6538 4530 50  0000 L CNN
+F 2 "LED_THT:LED_D3.0mm" H 6500 4450 50  0001 C CNN
+F 3 "~" H 6500 4450 50  0001 C CNN
+	1    6500 4450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J1
+U 1 1 60A0D31B
+P 7100 850
+F 0 "J1" H 7208 1031 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 7208 940 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7100 850 50  0001 C CNN
+F 3 "~" H 7100 850 50  0001 C CNN
+	1    7100 850 
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
