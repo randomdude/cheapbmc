@@ -23,8 +23,7 @@ app::app()
 	connectwifi();
 
 	serverHTTP = new ESP8266WebServerSecure(443);
-	// TODO: client auth
-//	serverHTTP->getServer().setClientTrustAnchor(new BearSSL::X509List(clientAuthCert));
+	serverHTTP->getServer().setClientTrustAnchor(new BearSSL::X509List(clientAuthCert));
 	serverHTTP->getServer().setRSACert(new BearSSL::X509List(serverCert), new BearSSL::PrivateKey(serverKey));
 	serverHTTP->on("/", std::bind(&app::showPageRoot, this));
 	serverHTTP->on("/doPower", std::bind(&app::showPage_doPowerButton, this));
@@ -92,9 +91,9 @@ void app::showPageRoot()
 	std::stringstream os;
 	os << "<html>";
 	os << "<head></head>";
-	os << "<a href=\"doPower\">Power button control</a>";
-	os << "<a href=\"doReset\">Reset button control</a>";
-	os << "<a href=\"getTargetStatus\">Get target power LED state</a>";
+	os << "<a href=\"doPower\">Power button control</a></br>";
+	os << "<a href=\"doReset\">Reset button control</a></br>";
+	os << "<a href=\"getTargetStatus\">Get target power LED state</a></br>";
 	os << "</html>";
 	serverHTTP->send(200, "text/html", os.str().c_str());
 }
