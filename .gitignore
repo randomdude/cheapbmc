@@ -2,3 +2,12 @@ code/config.h
 code/.vs
 code/Debug
 code/__vm
+TestResults
+code/*/bin
+code/*/obj
+code/*/Debug
+code/*/Release
+code/packages/*
+
+code/DvlErrLog.txt
+*.user
