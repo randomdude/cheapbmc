@@ -4,6 +4,14 @@ node("VS2017")
 	deleteDir();
 	checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmc.git']]])
 
+	// Set up vcpkg, which we will use to fetch libcurl
+	dir("thirdparty/vcpkg")
+	{
+		bat "bootstrap-vcpkg.bat"
+		bat "vcpkg integrate install"
+		bat "vcpkg install curl[tool] curl[openssl]"
+	}
+
 	dir("code")
 	{
 		// Generate the config file, containing wifi details
