@@ -2,12 +2,22 @@
 node("VS2017")
 {
 	deleteDir();
-	checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmc.git']]])
+	checkout([
+		$class: 'GitSCM', 
+		branches: [[name: '*/master']], 
+		doGenerateSubmoduleConfigurations: false, 
+		extensions: [
+			[$class: 'WipeWorkspace'], 
+			[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: '', trackingSubmodules: true]
+		],
+		submoduleCfg: [], 
+		userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmcxi.git']]
+	])
 
 	// Set up vcpkg, which we will use to fetch libcurl
 	dir("thirdparty/vcpkg")
 	{
-		bat "bootstrap-vcpkg.bat"
+		bat "bootstrap-vcpkg.bat -disableMetrics"
 		bat "vcpkg integrate install"
 		bat "vcpkg install curl[tool] curl[openssl]"
 	}
