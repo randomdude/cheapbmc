@@ -11,7 +11,7 @@ node("VS2017")
 			[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: '', trackingSubmodules: true]
 		],
 		submoduleCfg: [], 
-		userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmcxi.git']]
+		userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmc.git']]
 	])
 
 	// Set up vcpkg, which we will use to fetch libcurl
