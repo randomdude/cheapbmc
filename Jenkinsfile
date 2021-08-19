@@ -19,7 +19,8 @@ node("VS2017")
 	{
 		bat "bootstrap-vcpkg.bat -disableMetrics"
 		bat "vcpkg integrate install"
-		bat "vcpkg install curl[tool] curl[openssl]"
+		bat "vcpkg --x86-windows install curl[tool] curl[openssl]"
+		bat "vcpkg --x64-windows install curl[tool] curl[openssl]"
 	}
 
 	dir("code")
@@ -43,7 +44,7 @@ node("VS2017")
 
 		// Finally, we can build the project.
 		bat "\"${ideExtDir}\\${vmbuildPaths[0]}\" -builder.verbose=true -builder-close=true -builder.build=true -builder.output_directory=\"${codeDir}\\built\" -builder.rebuild=true -builder.upload=false  -builder.verbose_warnings=true -builder.project_path=\"${codeDir}\\panelctrl.vcxproj\" -builder.board_id=esp8266"
-		archiveArtifacts artifacts: 'built\\code.bin', onlyIfSuccessful: true
+		archiveArtifacts artifacts: 'code\\built\\code.bin', onlyIfSuccessful: true
 	}
 }
 
