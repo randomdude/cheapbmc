@@ -16,7 +16,7 @@ node("VS2017")
 	bat "powershell -executionpolicy bypass -File initSettings.ps1"
 	stage("Fetching nuget packages")
 	{
-		dir ('Trunk')
+		dir ('code')
 		{
 			bat 'nuget restore'
 		}
