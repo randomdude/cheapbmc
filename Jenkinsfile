@@ -13,14 +13,25 @@ node("VS2017")
 		submoduleCfg: [], 
 		userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmc.git']]
 	])
-
-	// Set up vcpkg, which we will use to fetch libcurl
-	dir("thirdparty/vcpkg")
+	bat "powershell -executionpolicy bypass -File initSettings.ps1"
+	stage("Fetching nuget packages")
 	{
-		bat "bootstrap-vcpkg.bat -disableMetrics"
-		bat "vcpkg integrate install"
-		bat "vcpkg --x86-windows install curl[tool] curl[openssl]"
-		bat "vcpkg --x64-windows install curl[tool] curl[openssl]"
+		dir ('Trunk')
+		{
+			bat 'nuget restore'
+		}
+	}
+
+	stage("Setting up curl via vcpkg")
+	{
+		// Set up vcpkg, which we will use to fetch libcurl
+		dir("thirdparty/vcpkg")
+		{
+			bat "bootstrap-vcpkg.bat -disableMetrics"
+			bat "vcpkg integrate install"
+			bat "vcpkg --x86-windows install curl[tool] curl[openssl]"
+			bat "vcpkg --x64-windows install curl[tool] curl[openssl]"
+		}
 	}
 
 	dir("code")
