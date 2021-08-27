@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+	<metadata minClientVersion="2.5">
+		<id>cheapbmc</id>
+		<version>0.0.001</version>
+		<authors>aliz</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">aliz</license>
+		<description>cheapbmc host-side tools</description>
+		<copyright>$copyright$</copyright>
+		<tags>native</tags>
+		<dependencies>
+			<group targetFramework="net45" />
+			<group targetFramework="native0.0" />
+		</dependencies>
+	</metadata>
+
+	<files>
+		<file src="build\**" target="build" />
+		<file src="lib\**" target="lib" />
+	</files>
+</package>

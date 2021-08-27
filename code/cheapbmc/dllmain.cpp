@@ -353,3 +353,67 @@ void doReset(char* IP, char* cacert, char* clientCert, char* clientKey)
 		}
 	}
 }
+
+void _doPowerButtonPress(char* IP, char* cacert, char* clientCert, char* clientKey, bool isLong)
+{
+	curl_global_init(CURL_GLOBAL_ALL);
+	{
+		curlEasy crl;
+
+		crl.setCACert(cacert);
+		crl.setClientCert(clientCert);
+		crl.setClientKey(clientKey);
+
+		std::stringstream urlStr;
+		urlStr << "https://" << IP << ":443/doPower";
+
+		curl_easy_setopt(crl.curl, CURLOPT_POST, true);
+
+		if (isLong)
+			curl_easy_setopt(crl.curl, CURLOPT_POSTFIELDS, "thingToDo=long");
+		else
+			curl_easy_setopt(crl.curl, CURLOPT_POSTFIELDS, "thingToDo=short");
+
+		memoryAndSize* resp = crl.perform((char*)urlStr.str().c_str());
+
+		if (_strnicmp(resp->memory, "OK", resp->size) == 0)
+			return;
+
+		std::stringstream ss;
+		ss << "Unrecognised response text: " << resp->memory;
+		throw std::runtime_error(ss.str());
+	}
+	curl_global_cleanup();
+}
+
+void doPowerButtonPress(char* IP, char* cacert, char* clientCert, char* clientKey, bool isLong)
+{
+	try
+	{
+		_doPowerButtonPress(IP, cacert, clientCert, clientKey, isLong);
+	}
+	catch (curlException &e)
+	{
+		if (onError_curl != NULL)
+		{
+			onError_curl((char*)e.what(), e.errorCode);
+			return;
+		}
+		else
+		{
+			throw;
+		}
+	}
+	catch (std::exception &e)
+	{
+		if (onError != NULL)
+		{
+			onError((char*)e.what());
+			return;
+		}
+		else
+		{
+			throw;
+		}
+	}
+}

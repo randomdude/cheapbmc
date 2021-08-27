@@ -9,6 +9,8 @@ namespace tests
     {
         private string testBMCIP = "192.168.90.20";
 
+        private string testKeyDir = Path.Combine(Properties.Settings.Default.checkoutDir, "keys");
+
         [TestMethod]
         [DeploymentItem("cheapbmc.dll")]
         [DeploymentItem("libcrypto-1_1.dll")]
@@ -19,9 +21,9 @@ namespace tests
         {
             cheapBMC uut = new cheapBMC(
                 testBMCIP,
-                File.ReadAllText("C:\\code\\cheapbmc\\keys\\ca\\ca.crt"),
-                File.ReadAllText("C:\\code\\cheapbmc\\keys\\client\\access.crt"),
-                File.ReadAllText("C:\\code\\cheapbmc\\keys\\client\\access.key")
+                File.ReadAllText(Path.Combine(testKeyDir, "ca", "ca.crt")),
+                File.ReadAllText(Path.Combine(testKeyDir, "client", "access.crt")),
+                File.ReadAllText(Path.Combine(testKeyDir, "client", "access.key"))
             );
 
             uut.getPowerState();
@@ -37,7 +39,7 @@ namespace tests
         {
             cheapBMC uut = new cheapBMC(
                 testBMCIP,
-                File.ReadAllText("C:\\code\\cheapbmc\\keys\\ca\\ca.crt"), 
+                File.ReadAllText(Path.Combine(testKeyDir, "ca", "ca.crt")),
                 null, 
                 null
             );
@@ -66,8 +68,8 @@ namespace tests
             cheapBMC uut = new cheapBMC(
                 testBMCIP,
                 null,
-                File.ReadAllText("C:\\code\\cheapbmc\\keys\\client\\access.crt"),
-                File.ReadAllText("C:\\code\\cheapbmc\\keys\\client\\access.key")
+                File.ReadAllText(Path.Combine(testKeyDir, "client", "access.crt")),
+                File.ReadAllText(Path.Combine(testKeyDir, "client", "access.key"))
             );
 
             try

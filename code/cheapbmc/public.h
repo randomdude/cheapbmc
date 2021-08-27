@@ -11,6 +11,7 @@ extern "C"
 
 	spec unsigned long __cdecl getPowerState(char* IP, char* cacert, char* clientCert, char* clientKey);
 	spec void __cdecl doReset(char* IP, char* cacert, char* clientCert, char* clientKey);
+	spec void __cdecl doPowerButtonPress(char* IP, char* cacert, char* clientCert, char* clientKey, bool isLong);
 
 	spec void __cdecl setErrorCallback(errorCallback newCB, errorCallback_curl newCB_Curl);
 }

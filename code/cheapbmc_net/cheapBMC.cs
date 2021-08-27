@@ -57,5 +57,11 @@ namespace cheapbmc_net
             else
                 return true;
         }
+
+        public void doPowerButtonPush(bool isLongPush)
+        {
+            interop_cheapbmc.powerButtonPress(_ip, _caCert, _clientCert, _clientKey, isLongPush);
+        }
+
     }
 }

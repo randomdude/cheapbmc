@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 #include "curl/curl.h"
-#include "../../cheapbmc/public.h"
+#include "../cheapbmc/public.h"
 
 char* IP = (char*)"192.168.90.20";
 
