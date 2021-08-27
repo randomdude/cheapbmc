@@ -29,8 +29,8 @@ node("VS2017")
 		{
 			bat "bootstrap-vcpkg.bat -disableMetrics"
 			bat "vcpkg integrate install"
-			bat "vcpkg --x86-windows install curl[tool] curl[openssl]"
-			bat "vcpkg --x64-windows install curl[tool] curl[openssl]"
+			bat "vcpkg --triplet=x86-windows install curl[tool] curl[openssl]"
+			bat "vcpkg --triplet=x64-windows install curl[tool] curl[openssl]"
 		}
 	}
 
