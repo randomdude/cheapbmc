@@ -59,7 +59,7 @@ node("VS2017")
 		{
 			// Finally, we can build the project, via VSMicro.
 			bat "\"${ideExtDir}\\${vmbuildPaths[0]}\" -builder.verbose=true -builder-close=true -builder.build=true -builder.output_directory=\"${codeDir}\\built\" -builder.rebuild=true -builder.upload=false  -builder.verbose_warnings=true -builder.project_path=\"${codeDir}\\code.vcxproj\" -builder.board_id=esp8266"
-			archiveArtifacts artifacts: 'code\\built\\code.bin', onlyIfSuccessful: true
+			archiveArtifacts artifacts: 'built\\code.bin', onlyIfSuccessful: true
 		}
 
 		// For now, we don't run tests.
