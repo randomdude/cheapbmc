@@ -67,29 +67,31 @@ node("VS2017")
 		// Now we build the host-side tools via VS as normal.
 		stage("Building host-side code tooling..")
 		{
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "xcopy /e cheapbmc_net\\bin\\Release\\*.dll lib\\Net45\\Release\\"
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "xcopy /e cheapbmc_net\\bin\\Debug\\*.dll lib\\Net45\\Debug\\"
-
 			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug   /p:Platform=\"x86\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "xcopy /e Win32\\Debug\\*.dll Win32\\Debug\\*.lib lib\\Native\\x86\\Debug\\"
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug   /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "xcopy /e x64\\Debug\\*.dll x64\\Debug\\*.lib lib\\Native\\x64\\Debug\\"
 			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Release /p:Platform=\"x86\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "xcopy /e Win32\\release\\*.dll Win32\\release\\*.lib lib\\Native\\x86\\release\\"
+			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug   /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
 			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Release /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "xcopy /e x64\\release\\*.dll x64\\release\\*.lib lib\\Native\\x64\\release\\"
+
+			bat "xcopy /e Win32_anycpu\\Debug\\*.dll Win32\\Debug\\*.lib nuget\\lib\\Net45\\Debug\\"
+			bat "xcopy /e Win32_anycpu\\Release\\*.dll Win32\\Debug\\*.lib nuget\\lib\\Net45\\Release\\"
+
+			bat "xcopy /e Win32\\Debug\\*.dll Win32\\Debug\\*.lib nuget\\lib\\Native\\x86\\Debug\\"
+			bat "xcopy /e Win32\\release\\*.dll Win32\\release\\*.lib nuget\\lib\\Native\\x86\\release\\"
+			bat "xcopy /e x64\\Debug\\*.dll x64\\Debug\\*.lib nuget\\lib\\Native\\x64\\Debug\\"
+			bat "xcopy /e x64\\release\\*.dll x64\\release\\*.lib nuget\\lib\\Native\\x64\\release\\"
 		}
 
 		stage("Publishing artifacts")
 		{
 			// Build the nuget package.
-			bat "nuget pack -Version 1.0.${BUILD_NUMBER}"
+			dir("nuget")
+			{
+				bat "nuget pack -Version 1.0.${BUILD_NUMBER}"
 			
-			// Archive locally and send to the nuget server
-			archiveArtifacts artifacts: '*.nupkg'
-			bat "nuget push -Source http://nuget/v3/index.json *.nupkg"
+				// Archive locally and send to the nuget server
+				archiveArtifacts artifacts: '*.nupkg'
+				bat "nuget push -Source http://nuget/v3/index.json *.nupkg"
+			}
 		}
 	}
 }
