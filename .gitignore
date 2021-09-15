@@ -7,7 +7,23 @@ code/*/bin
 code/*/obj
 code/*/Debug
 code/*/Release
+code/*/Win32
+code/*/x64
 code/packages/*
+
+code/tests/app.config
+code/tests/Properties/Settings.Designer.cs
+code/tests/Properties/Settings.settings
 
 code/DvlErrLog.txt
 *.user
+
+**/*.sch-bak
+**/*.net
+**/*.kicad_pcb-bak
+*-cache.lib
+**/fp-info-cache
+**/fp-lib-table
+**/sym-lib-table
+keys/ca
+keys/client
