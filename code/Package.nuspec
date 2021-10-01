@@ -2,7 +2,7 @@
 <package >
 	<metadata minClientVersion="2.5">
 		<id>cheapbmc</id>
-		<version>0.0.001</version>
+		<version>0.0.004</version>
 		<authors>aliz</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<license type="expression">aliz</license>
