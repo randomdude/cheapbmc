@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 
 namespace cheapbmc_net
 {
@@ -52,15 +54,12 @@ namespace cheapbmc_net
         public bool getPowerState()
         {
             int res = interop_cheapbmc.getPowerState(_ip, _caCert, _clientCert, _clientKey);
-            if (res == 0)
-                return false;
-            else
-                return true;
+            return res != 0;
         }
 
         public void doPowerButtonPush(bool isLongPush)
         {
-            interop_cheapbmc.powerButtonPress(_ip, _caCert, _clientCert, _clientKey, isLongPush);
+            interop_cheapbmc.doPowerButtonPress(_ip, _caCert, _clientCert, _clientKey, isLongPush);
         }
 
     }
