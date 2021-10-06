@@ -119,4 +119,4 @@ node ("win10")
 		kicadSupport.build("http://gitea/aliz/cheapbmc.git", "board")
 	}
 }
-}
+})
