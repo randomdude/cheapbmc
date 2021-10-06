@@ -8,7 +8,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Platform)' == 'x86' ">
-		<Content Include="../$(PlatformTarget)/$(Configuration)/libcrypto-1_1.dll">
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcrypto-1_1.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>libcrypto-1_1.dll</Link>
 		</Content>
@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(Platform)' == 'x64' ">
-		<Content Include="../$(PlatformTarget)/$(Configuration)/libcrypto-1_1-x64.dll">
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcrypto-1_1-x64.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>libcrypto-1_1-x64.dll</Link>
 		</Content>
