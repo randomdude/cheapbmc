@@ -247,11 +247,11 @@ unsigned long _getPowerState(char* IP, char* cacert, char* clientCert, char* cli
 		
 		if (_strnicmp(resp->memory, "ON", resp->size) == 0)
 		{
-			return true;
+			return 1;
 		}
 		else if (_strnicmp(resp->memory, "OFF", resp->size) == 0)
 		{
-			return false;
+			return 0;
 		}
 		else
 		{

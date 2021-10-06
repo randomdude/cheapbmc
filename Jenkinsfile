@@ -62,7 +62,7 @@ node("VS2017")
 			archiveArtifacts artifacts: 'built\\code.bin', onlyIfSuccessful: true
 		}
 
-		// For now, we don't run tests.
+		// For now, we don't run tests, since they require an esp8266 board we can talk to via wifi.
 
 		// Now we build the host-side tools via VS as normal.
 		stage("Building host-side code tooling..")
@@ -72,13 +72,18 @@ node("VS2017")
 			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug   /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
 			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Release /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
 
-			bat "xcopy /e Win32_anycpu\\Debug\\*.dll Win32\\Debug\\*.lib nuget\\lib\\Net45\\Debug\\"
-			bat "xcopy /e Win32_anycpu\\Release\\*.dll Win32\\Debug\\*.lib nuget\\lib\\Net45\\Release\\"
+			bat "mkdir nuget\\lib\\Net45\\Debug"
+			bat "mkdir nuget\\lib\\Net45\\Release"
+			bat "mkdir nuget\\runtimes\\x64\\Release"
+			bat "mkdir nuget\\runtimes\\x86\\Release"
 
-			bat "xcopy /e Win32\\Debug\\*.dll Win32\\Debug\\*.lib nuget\\lib\\Native\\x86\\Debug\\"
-			bat "xcopy /e Win32\\release\\*.dll Win32\\release\\*.lib nuget\\lib\\Native\\x86\\release\\"
-			bat "xcopy /e x64\\Debug\\*.dll x64\\Debug\\*.lib nuget\\lib\\Native\\x64\\Debug\\"
-			bat "xcopy /e x64\\release\\*.dll x64\\release\\*.lib nuget\\lib\\Native\\x64\\release\\"
+			bat "xcopy /e Win32_anycpu\\Debug\\cheapbmc_net.dll nuget\\lib\\Net45\\Debug\\"
+			bat "xcopy /e Win32_anycpu\\Release\\cheapbmc_net.dll nuget\\lib\\Net45\\Release\\"
+
+			bat "xcopy /e Win32_anycpu\\Debug\\libCurl.dll Win32_anycpu\\Debug\\libCurlShim.dll Win32\\Debug\\*.dll nuget\\runtimes\\x86\\Debug\\"
+			bat "xcopy /e Win32_anycpu\\Debug\\libCurl.dll Win32_anycpu\\Debug\\libCurlShim.dll x64\\Debug\\*.dll nuget\\runtimes\\x64\\Debug\\"
+			bat "xcopy /e Win32_anycpu\\Release\\libCurl.dll Win32_anycpu\\Release\\libCurlShim.dll Win32\\Release\\*.dll nuget\\runtimes\\x86\\Debug\\"
+			bat "xcopy /e Win32_anycpu\\Release\\libCurl.dll Win32_anycpu\\Release\\libCurlShim.dll x64\\Release\\*.dll nuget\\runtimes\\x64\\Debug\\"
 		}
 
 		stage("Publishing artifacts")

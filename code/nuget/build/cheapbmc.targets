@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+	<ItemGroup>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/cheapbmc.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>cheapbmc.dll</Link>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcrypto-1_1-x64.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcrypto-1_1-x64.dll</Link>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcurl.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcurl.dll</Link>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libssl-1_1-x64.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libssl-1_1-x64.dll</Link>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/zlib1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>zlib1.dll</Link>
+		</Content>
+	</ItemGroup>
+
+</Project>

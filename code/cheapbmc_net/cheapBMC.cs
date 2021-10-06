@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using SeasideResearch.LibCurlNet;
 
 namespace cheapbmc_net
 {
@@ -33,8 +32,6 @@ namespace cheapbmc_net
                 {
                     if (onErrorDlg == null)
                     {
-                        Curl.GlobalInit((int) CURLinitFlag.CURL_GLOBAL_ALL);
-
                         onErrorDlg = onError;
                         onErrorCurlDlg = onErrorCurl;
 
@@ -56,41 +53,13 @@ namespace cheapbmc_net
 
         public bool getPowerState()
         {
-            StringBuilder htmlText = new StringBuilder();
-
-            using (var stream = new StringWriter(htmlText))
-            {
-                using (var easy = new Easy())
-                {
-                    easy.SetOpt(CURLoption.CURLOPT_URL, $"https://{_ip}/getPowerStatus");
-
-                    easy.SetOpt(CURLoption.CURLOPT_WRITEFUNCTION, new Easy.WriteFunction((data, size, nemb, user) =>
-                    {
-                        int length = size * nemb;
-                        stream.Write(Encoding.ASCII.GetChars(data, 0, length));
-                        return length;
-                    }));
-
-                    CURLcode fetchRes = easy.Perform();
-                    if (fetchRes != CURLcode.CURLE_OK)
-                        throw new CurlException("Failed to get power state", (uint)fetchRes);
-
-                    string resultText = htmlText.ToString().Trim();
-                    if (resultText == "0")
-                        return false;
-                    if (resultText == "1")
-                        return true;
-
-                    throw new Exception($"Unrecognised result for getPowerStatus: '{resultText}'");
-                }
-            }
-
-            //int res = interop_cheapbmc.getPowerState(_ip, _caCert, _clientCert, _clientKey);
+            int res = interop_cheapbmc.getPowerState(_ip, _caCert, _clientCert, _clientKey);
+            return res != 0;
         }
 
         public void doPowerButtonPush(bool isLongPush)
         {
-            interop_cheapbmc.powerButtonPress(_ip, _caCert, _clientCert, _clientKey, isLongPush);
+            interop_cheapbmc.doPowerButtonPress(_ip, _caCert, _clientCert, _clientKey, isLongPush);
         }
 
     }
