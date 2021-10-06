@@ -67,23 +67,22 @@ node("VS2017")
 		// Now we build the host-side tools via VS as normal.
 		stage("Building host-side code tooling..")
 		{
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug   /p:Platform=\"x86\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Release /p:Platform=\"x86\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Debug   /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-			bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=Release /p:Platform=\"x64\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+			// Build both debug and release
+			[ 'Release', 'Debug' ].each { $buildcfg ->
+				bat "mkdir nuget\\lib\\Net45\\${$buildcfg}"
+				// Do 32 and 64-bit builds
+				[ 'x86', 'x64' ].each { $arch ->
+					// Do the build..
+					bat "\"${tool 'VS2017'}\" code.sln /p:Configuration=${$buildcfg} /p:Platform=\"${$arch}\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+					bat "mkdir nuget\\runtimes\\${$arch}\\${$buildcfg}"
 
-			bat "mkdir nuget\\lib\\Net45\\Debug"
-			bat "mkdir nuget\\lib\\Net45\\Release"
-			bat "mkdir nuget\\runtimes\\x64\\Release"
-			bat "mkdir nuget\\runtimes\\x86\\Release"
+					// Copy the arch-independent cheapbmc_net assembly
+					bat "copy /y Win32_anycpu\\${$buildcfg}\\cheapbmc_net.dll nuget\\lib\\Net45\\${$buildcfg}\\"
 
-			bat "xcopy /e Win32_anycpu\\Debug\\cheapbmc_net.dll nuget\\lib\\Net45\\Debug\\"
-			bat "xcopy /e Win32_anycpu\\Release\\cheapbmc_net.dll nuget\\lib\\Net45\\Release\\"
-
-			bat "xcopy /e Win32_anycpu\\Debug\\libCurl.dll Win32_anycpu\\Debug\\libCurlShim.dll Win32\\Debug\\*.dll nuget\\runtimes\\x86\\Debug\\"
-			bat "xcopy /e Win32_anycpu\\Debug\\libCurl.dll Win32_anycpu\\Debug\\libCurlShim.dll x64\\Debug\\*.dll nuget\\runtimes\\x64\\Debug\\"
-			bat "xcopy /e Win32_anycpu\\Release\\libCurl.dll Win32_anycpu\\Release\\libCurlShim.dll Win32\\Release\\*.dll nuget\\runtimes\\x86\\Debug\\"
-			bat "xcopy /e Win32_anycpu\\Release\\libCurl.dll Win32_anycpu\\Release\\libCurlShim.dll x64\\Release\\*.dll nuget\\runtimes\\x64\\Debug\\"
+					// Copy these native files into the 'runtimes' directory.
+					bat "copy /y ${$arch}\\${$buildcfg}\\*.dll nuget\\runtimes\\${$arch}\\${$buildcfg}\\"
+				}
+			}
 		}
 
 		stage("Publishing artifacts")
