@@ -1,4 +1,8 @@
 //group=electronics
+
+parallel(
+'VS': 
+{ 
 node("VS2017")
 {
 	deleteDir();
@@ -99,7 +103,9 @@ node("VS2017")
 		}
 	}
 }
-
+},
+'win10vs2017': 
+{
 node ("win10")
 {
 	stage("Checking board via KiCAD")
@@ -112,4 +118,5 @@ node ("win10")
 		def kicadSupport = load "${rootDir}\\build.groovy"
 		kicadSupport.build("http://gitea/aliz/cheapbmc.git", "board")
 	}
+}
 }
