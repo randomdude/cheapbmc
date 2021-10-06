@@ -60,6 +60,24 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -88,6 +106,57 @@
       <Name>cheapbmc_net</Name>
     </ProjectReference>
   </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="../$(PlatformTarget)/$(Configuration)/cheapbmc.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>cheapbmc.dll</Link>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Platform)' == 'x64' ">
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libcrypto-1_1-x64.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcrypto-1_1-x64.dll</Link>
+		</Content>
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libssl-1_1-x64.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libssl-1_1-x64.dll</Link>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Platform)' == 'x86' ">
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libcrypto-1_1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcrypto-1_1.dll</Link>
+		</Content>
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libssl-1_1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libssl-1_1.dll</Link>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<Content Include="../$(PlatformTarget)/$(Configuration)/zlibd1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>zlibd1.dll</Link>
+		</Content>
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libcurl-d.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcurl-d.dll</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+		<Content Include="../$(PlatformTarget)/$(Configuration)/zlib1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>zlib1.dll</Link>
+		</Content>
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libcurl.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcurl.dll</Link>
+		</Content>
+	</ItemGroup>
+	
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

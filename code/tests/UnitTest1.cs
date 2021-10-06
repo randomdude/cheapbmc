@@ -12,11 +12,6 @@ namespace tests
         private string testKeyDir = Path.Combine(Properties.Settings.Default.checkoutDir, "keys");
 
         [TestMethod]
-        [DeploymentItem("cheapbmc.dll")]
-        [DeploymentItem("libcrypto-1_1.dll")]
-        [DeploymentItem("libssl-1_1.dll")]
-        [DeploymentItem("libcurl-d.dll")]
-        [DeploymentItem("zlibd1.dll")]
         public void testConnection()
         {
             cheapBMC uut = new cheapBMC(

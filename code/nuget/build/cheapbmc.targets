@@ -5,21 +5,48 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>cheapbmc.dll</Link>
 		</Content>
-		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcrypto-1_1-x64.dll">
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Platform)' == 'x86' ">
+		<Content Include="../$(PlatformTarget)/$(Configuration)/libcrypto-1_1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcrypto-1_1.dll</Link>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libssl-1_1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libssl-1_1.dll</Link>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Platform)' == 'x64' ">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>libcrypto-1_1-x64.dll</Link>
-		</Content>
-		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcurl.dll">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Link>libcurl.dll</Link>
 		</Content>
 		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libssl-1_1-x64.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>libssl-1_1-x64.dll</Link>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcurl.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcurl.dll</Link>
+		</Content>
 		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/zlib1.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>zlib1.dll</Link>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/libcurl-d.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libcurl-d.dll</Link>
+		</Content>
+		<Content Include="$(MSBuildThisFileDirectory)../runtimes/$(PlatformTarget)/$(Configuration)/zlibd1.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>zlibd1.dll</Link>
 		</Content>
 	</ItemGroup>
 
