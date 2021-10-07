@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "code", "code.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{2A516359-3C9E-4E72-8EEC-764ACCFBEE11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{186984F2-19E9-4DF2-B6B4-F471D63269C7} = {186984F2-19E9-4DF2-B6B4-F471D63269C7}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60E837F5-F8BE-4DEE-B927-316DFBCA5EA5}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,6 +24,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cheapbmc-tests", "cheapbmc-
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cheapbmc_net", "cheapbmc_net\cheapbmc_net.csproj", "{34E235B2-AB43-4CE2-B406-2C269E0F45FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{186984F2-19E9-4DF2-B6B4-F471D63269C7} = {186984F2-19E9-4DF2-B6B4-F471D63269C7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
