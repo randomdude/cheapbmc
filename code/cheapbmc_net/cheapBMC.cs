@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace cheapbmc_net
@@ -35,6 +38,40 @@ namespace cheapbmc_net
                         onErrorDlg = onError;
                         onErrorCurlDlg = onErrorCurl;
 
+                        // If this dll is present in the current directory, great, we're a 32/64bit build and
+                        // the modules are available and it will Just Work.
+                        // If not, however, then we should look in the x86 or x64 directory in order to find
+                        // the modules we require.
+                        if (File.Exists("cheapbmc.dll") == false)
+                        {
+                            if (IntPtr.Size == 4)
+                            {
+                                LoadLibraryThrowing("x86/libcrypto-1_1.dll");
+                                LoadLibraryThrowing("x86/libssl-1_1.dll");
+#if DEBUG
+                                LoadLibrary("x86/zlibd1.dll");
+                                LoadLibraryThrowing("x86/libcurl-d.dll");
+#else
+                                LoadLibraryThrowing("x86/zlib1.dll");
+                             LoadLibraryThrowing("x86/libcurl.dll");
+#endif
+                                LoadLibraryThrowing("x86/cheapbmc.dll");
+                            }
+                            else
+                            {
+                                LoadLibraryThrowing("x64/libcrypto-1_1-x64.dll");
+                                LoadLibraryThrowing("x64/libssl-1_1-x64.dll");
+#if DEBUG
+                                LoadLibraryThrowing("x64/zlibd1.dll");
+                                LoadLibraryThrowing("x64/libcurl-d.dll");
+#else
+                                LoadLibraryThrowing("x64/zlib1.dll");
+                                LoadLibraryThrowing("x64/libcurl.dll");
+#endif
+                                LoadLibraryThrowing("x64/cheapbmc.dll");
+                            }
+                        }
+
                         interop_cheapbmc.setErrorCallback(onErrorDlg, onErrorCurlDlg);
                     }
                 }
@@ -62,5 +99,14 @@ namespace cheapbmc_net
             interop_cheapbmc.doPowerButtonPress(_ip, _caCert, _clientCert, _clientKey, isLongPush);
         }
 
+        private static void LoadLibraryThrowing(string filename)
+        {
+            IntPtr res = LoadLibrary(filename);
+            if (res == IntPtr.Zero)
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+        }
+
+        [DllImport("kernel32", SetLastError = true, CharSet = CharSet.Ansi)]
+        private static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)]string lpFileName);
     }
 }
