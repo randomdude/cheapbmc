@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 		<!-- If this is a debug build, then some binaries have a different name to release builds. -->
 		<PropertyGroup>
 			<moduleName_zlib Condition="'$(Configuration)' == 'Debug'  ">zlibd1.dll</moduleName_zlib>
@@ -19,44 +21,44 @@
 
 		<!-- If this is an AnyCPU build, we must copy both 32- and 64-bit binaries and let the managed code pick the correct one at runtime. -->
 		<ItemGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-			<Content Include="../x64/$(Configuration)/libcrypto-1_1-x64.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x64/$(Configuration)/libcrypto-1_1-x64.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x64/libcrypto-1_1-x64.dll</Link>
 			</Content>
-			<Content Include="../x64/$(Configuration)/libssl-1_1-x64.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x64/$(Configuration)/libssl-1_1-x64.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x64/libssl-1_1-x64.dll</Link>
 			</Content>
-			<Content Include="../x64/$(Configuration)/$(moduleName_zlib)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x64/$(Configuration)/$(moduleName_zlib)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x64/$(moduleName_zlib)</Link>
 			</Content>
-			<Content Include="../x64/$(Configuration)/$(moduleName_libcurl)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x64/$(Configuration)/$(moduleName_libcurl)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x64/$(moduleName_libcurl)</Link>
 			</Content>
-			<Content Include="../x64/$(Configuration)/cheapbmc.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x64/$(Configuration)/cheapbmc.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x64/cheapbmc.dll</Link>
 			</Content>
 
-			<Content Include="../x86/$(Configuration)/libcrypto-1_1.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x86/$(Configuration)/libcrypto-1_1.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x86/libcrypto-1_1.dll</Link>
 			</Content>
-			<Content Include="../x86/$(Configuration)/libssl-1_1.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x86/$(Configuration)/libssl-1_1.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x86/libssl-1_1.dll</Link>
 			</Content>
-			<Content Include="../x86/$(Configuration)/$(moduleName_zlib)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x86/$(Configuration)/$(moduleName_zlib)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x86/$(moduleName_zlib)</Link>
 			</Content>
-			<Content Include="../x86/$(Configuration)/$(moduleName_libcurl)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x86/$(Configuration)/$(moduleName_libcurl)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x86/$(moduleName_libcurl)</Link>
 			</Content>
-			<Content Include="../x86/$(Configuration)/cheapbmc.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/x86/$(Configuration)/cheapbmc.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>x86/cheapbmc.dll</Link>
 			</Content>
@@ -64,23 +66,23 @@
 
 		<!-- if this is *not* anycpu, then we should copy only the relevant binaries. -->
 		<ItemGroup Condition=" '$(Platform)' != 'AnyCPU' ">
-			<Content Include="../$(Platform)/$(Configuration)/$(moduleName_zlib)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/$(Platform)/$(Configuration)/$(moduleName_zlib)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>$(moduleName_zlib)</Link>
 			</Content>
-			<Content Include="../$(Platform)/$(Configuration)/$(moduleName_libcurl)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/$(Platform)/$(Configuration)/$(moduleName_libcurl)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>$(moduleName_libcurl)</Link>
 			</Content>
-			<Content Include="../$(Platform)/$(Configuration)/$(moduleName_libssl)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/$(Platform)/$(Configuration)/$(moduleName_libssl)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>$(moduleName_libssl)</Link>
 			</Content>
-			<Content Include="../$(Platform)/$(Configuration)/$(moduleName_libcrypto)">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/$(Platform)/$(Configuration)/$(moduleName_libcrypto)">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>$(moduleName_libcrypto)</Link>
 			</Content>
-			<Content Include="../$(Platform)/$(Configuration)/cheapbmc.dll">
+			<Content Include="$(MSBuildThisFileDirectory)/../Runtimes/$(Platform)/$(Configuration)/cheapbmc.dll">
 				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 				<Link>cheapbmc.dll</Link>
 			</Content>
