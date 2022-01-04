@@ -33,7 +33,7 @@ node("VS2017")
 		{
 			bat "bootstrap-vcpkg.bat -disableMetrics"
 			// If this directory does not exist, we must create it, otherwise vcpkg may not work correctly.
-			bat returnStatus: true,  script: "mkdir %APPDATA%\\Local\\vcpkg"
+			bat returnStatus: true,  script: "mkdir %LOCALAPPDATA%\\Local\\vcpkg"
 			bat "vcpkg integrate install"
 			bat "vcpkg --triplet=x86-windows install curl[tool] curl[openssl] openssl"
 			bat "vcpkg --triplet=x64-windows install curl[tool] curl[openssl] openssl"
