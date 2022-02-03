@@ -255,9 +255,9 @@ Text GLabel 10400 1300 0    50   UnSpc ~ 0
 PWRLED_N
 Text GLabel 10400 1400 0    50   UnSpc ~ 0
 PWRLED_P
-Text GLabel 10250 3150 2    50   UnSpc ~ 0
+Text GLabel 10700 3150 2    50   UnSpc ~ 0
 PWRLED_N
-Text GLabel 10250 2950 2    50   UnSpc ~ 0
+Text GLabel 10700 2950 2    50   UnSpc ~ 0
 PWRLED_P
 $Comp
 L power:GND #PWR0107
@@ -546,4 +546,21 @@ F 3 "~" H 7100 850 50  0001 C CNN
 	1    7100 850 
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:R R5
+U 1 1 61FBB9FB
+P 10450 3150
+F 0 "R5" V 10350 3150 50  0000 C CNN
+F 1 "220" V 10250 3150 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 10380 3150 50  0001 C CNN
+F 3 "~" H 10450 3150 50  0001 C CNN
+	1    10450 3150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	10300 3150 10250 3150
+Wire Wire Line
+	10250 2950 10700 2950
+Wire Wire Line
+	10700 3150 10600 3150
 $EndSCHEMATC
