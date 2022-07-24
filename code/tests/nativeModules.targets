@@ -11,10 +11,10 @@
 
 			<!-- some module names differ on 32- vs 64-bit builds. -->
 		<PropertyGroup>
-			<moduleName_libcrypto Condition=" '$(Platform)' == 'x64' ">libcrypto-1_1-x64.dll</moduleName_libcrypto>
-			<moduleName_libcrypto Condition=" '$(Platform)' == 'x86' ">libcrypto-1_1.dll</moduleName_libcrypto>
-			<moduleName_libssl Condition=" '$(Platform)' == 'x64' ">libssl-1_1-x64.dll</moduleName_libssl>
-			<moduleName_libssl Condition=" '$(Platform)' == 'x86' ">libssl-1_1.dll</moduleName_libssl>
+			<moduleName_libcrypto Condition=" '$(Platform)' == 'x64' ">libcrypto-3-x64.dll</moduleName_libcrypto>
+			<moduleName_libcrypto Condition=" '$(Platform)' == 'x86' ">libcrypto-3.dll</moduleName_libcrypto>
+			<moduleName_libssl Condition=" '$(Platform)' == 'x64' ">libssl-3-x64.dll</moduleName_libssl>
+			<moduleName_libssl Condition=" '$(Platform)' == 'x86' ">libssl-3.dll</moduleName_libssl>
 		</PropertyGroup>
 
 		<!-- If this is an AnyCPU build, we must copy both 32- and 64-bit binaries and let the managed code pick the correct one at runtime. -->
