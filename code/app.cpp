@@ -12,6 +12,22 @@ extern const char serverCert[];
 extern const char serverKey[];
 extern const char clientAuthCert[];
 
+char* PROGMEM pageRoot = "<html>\
+<head></head>\
+<a href=\"doPower\">Power button control</a></br>\
+<a href=\"doReset\">Reset button control</a></br>\
+<a href=\"getTargetStatus\">Get target power LED state</a></br>\
+</html>";
+
+char* PROGMEM pageReset = "<form method=post>\
+<input type=\"submit\">Tap reset button</br>\
+</form>";
+
+char* PROGMEM pagePower =  "<form method=post>\
+<input type=\"submit\" name=\"thingToDo\" value=\"short\">Do short power button press</input></br>\
+<input type=\"submit\" name=\"thingToDo\" value=\"long\">Do long power button press</input></br>\
+</form>";
+
 app::app()
 {
 	pinMode(LED_BUILTIN, OUTPUT);
@@ -88,26 +104,14 @@ void app::idleForever()
 
 void app::showPageRoot()
 {
-	std::stringstream os;
-	os << "<html>";
-	os << "<head></head>";
-	os << "<a href=\"doPower\">Power button control</a></br>";
-	os << "<a href=\"doReset\">Reset button control</a></br>";
-	os << "<a href=\"getTargetStatus\">Get target power LED state</a></br>";
-	os << "</html>";
-	serverHTTP->send(200, "text/html", os.str().c_str());
+	serverHTTP->send(200, "text/html", pageRoot);
 }
 
 void app::showPage_doPowerButton()
 {
 	if (serverHTTP->method() == HTTPMethod::HTTP_GET)
 	{
-		std::stringstream os;
-		os << "<form method=post>";
-		os << "<input type=\"submit\" name=\"thingToDo\" value=\"short\">Do short power button press</input></br>";
-		os << "<input type=\"submit\" name=\"thingToDo\" value=\"long\">Do long power button press</input></br>";
-		os << "</form>";
-		serverHTTP->send(200, "text/html", os.str().c_str());
+		serverHTTP->send(200, "text/html", pagePower);
 	}
 	else if (serverHTTP->method() == HTTPMethod::HTTP_POST)
 	{
@@ -142,11 +146,7 @@ void app::showPage_doResetButton()
 {
 	if (serverHTTP->method() == HTTPMethod::HTTP_GET)
 	{
-		std::stringstream os;
-		os << "<form method=post>";
-		os << "<input type=\"submit\">Tap reset button</br>";
-		os << "</form>";
-		serverHTTP->send(200, "text/html", os.str().c_str());
+		serverHTTP->send(200, "text/html", pageReset);
 	}
 	else if (serverHTTP->method() == HTTPMethod::HTTP_POST)
 	{
@@ -163,10 +163,10 @@ void app::showPage_doResetButton()
 
 void app::showPage_getTargetStatus()
 {
-	std::stringstream os;
+  char* state;
 	if (targetPowerLEDState)
-		os << "ON";
+		state = "ON";
 	else
-		os << "OFF";
-	serverHTTP->send(200, "text/html", os.str().c_str());
+		state = "OFF";
+	serverHTTP->send(200, "text/html", state);
 }
