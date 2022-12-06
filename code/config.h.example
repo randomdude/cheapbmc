@@ -1,18 +1,21 @@
 #define CFG_WIFI_SSID "stripysocks"
 #define CFG_WIFI_PASSWORD "..."
 
+# The CRT file for this 'server'
 static const char serverCert[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
 
 -----END CERTIFICATE-----
 )EOF";
 
+# The key to match the above
 static const char serverKey[] PROGMEM = R"EOF(
 -----BEGIN RSA PRIVATE KEY-----
 
 -----END RSA PRIVATE KEY-----
 )EOF";
 
+# The 'access.crt' certificate
 static const char clientAuthCert[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
 
