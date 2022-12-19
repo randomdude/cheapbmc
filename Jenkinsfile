@@ -115,10 +115,14 @@ node ("win10")
 		deleteDir();
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kicad-jenkins-support']], submoduleCfg: [], userRemoteConfigs: [[url: 'http://gitea/aliz/kicad-jenkins-support']]])
 		bat script: 'copy kicad-jenkins-support\\* .'
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ccam-jenkins-support']], submoduleCfg: [], userRemoteConfigs: [[url: 'http://gitea/aliz/ccam-jenkins-support']]])
 
 		def rootDir = pwd()
 		def kicadSupport = load "${rootDir}\\build.groovy"
 		kicadSupport.build("http://gitea/aliz/cheapbmc.git", "board")
+		
+		def ccamSupport = load "ccam-jenkins-support\\build.groovy"
+		ccamSupport.build("cheapbmc-wemos-d1-singlesided.kicad_pcb.gerbers.zip")
 	}
 }
 })
