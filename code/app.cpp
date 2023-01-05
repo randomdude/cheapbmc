@@ -95,9 +95,21 @@ void app::connectwifi()
 
 void app::idleForever()
 {
+	// Since some hardware will PWM the 'power on LED', we keep a count of how long it has been since we last saw a HIGH state.
+	// If we saw any HIGH state in the last 100ms, we interpret the LED as powered on.
+	unsigned long timeOfLastPowerLEDHigh = 0;
 	while (true)
 	{
-		targetPowerLEDState = not digitalRead(PIN_POWERSENSOR);
+		if (digitalRead(PIN_POWERSENSOR) == LOW)	// This signal is active low, remember.
+		{
+			timeOfLastPowerLEDHigh = millis();
+		}
+		// Has the power LED been asserted in the last 100msec?
+		if (millis() - timeOfLastPowerLEDHigh > 100)
+			targetPowerLEDState = false;
+		else
+			targetPowerLEDState = true;
+
 		serverHTTP->handleClient();
 	}
 }
