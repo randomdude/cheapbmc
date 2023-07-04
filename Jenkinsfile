@@ -106,7 +106,7 @@ node("VS2017")
 	}
 }
 },
-'win10vs2017': 
+'win10': 
 {
 node ("win10")
 {
@@ -123,6 +123,24 @@ node ("win10")
 		
 		def ccamSupport = load "ccam-jenkins-support\\build.groovy"
 		ccamSupport.build("cheapbmc-wemos-d1-singlesided.kicad_pcb.gerbers.zip")
+	}
+
+	stage("Building enclosure")
+	{
+		dir("enclosure")
+		{
+			// We'll need the 'freecad-scripts' repo so we can export our objects for the lasercutter.
+			checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'freecad-scripts']], userRemoteConfigs: [[url: 'http://gitea/aliz/freecad-scripts.git']]])
+			bat 'copy freecad-scripts\\*.py .'
+
+			def exportutils = load 'freecad-scripts\\exportutils.groovy'
+			exportutils.installReqs()
+			
+			["3_5_inchDiskSized"].each
+			{ projPath ->
+					exportutils.doBuildForFCStdFile(projPath)
+			}
+		}
 	}
 }
 })
