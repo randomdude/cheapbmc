@@ -113,6 +113,18 @@ node ("win10")
 	stage("Checking board via KiCAD")
 	{
 		deleteDir();
+		checkout([
+			$class: 'GitSCM', 
+			branches: [[name: '*/master']], 
+			doGenerateSubmoduleConfigurations: false, 
+			extensions: [
+				[$class: 'WipeWorkspace'], 
+				[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: '', trackingSubmodules: true]
+			],
+			submoduleCfg: [], 
+			userRemoteConfigs: [[url: 'http://gitea/aliz/cheapbmc.git']]
+		])
+
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kicad-jenkins-support']], submoduleCfg: [], userRemoteConfigs: [[url: 'http://gitea/aliz/kicad-jenkins-support']]])
 		bat script: 'copy kicad-jenkins-support\\* .'
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ccam-jenkins-support']], submoduleCfg: [], userRemoteConfigs: [[url: 'http://gitea/aliz/ccam-jenkins-support']]])
