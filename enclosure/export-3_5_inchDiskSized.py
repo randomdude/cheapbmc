@@ -47,6 +47,11 @@ def main():
 	exporter = exportutils(tabbedObjects, builder.material)
 	exporter.rotateAndPositionAllObjectsOnZ()
 
+	# Rotate the two supports so the result causes less wastage
+	for obj in tabbedObjects:
+		if obj.Shape.BoundBox.YLength < 40:
+			obj.Placement.Rotation = obj.Placement.Rotation.multiply(FreeCAD.Rotation(FreeCAD.Base.Vector(0,1,0),90))
+
 	# Now we can place our objects one after another, in a neat row.
 	exporter.placeInRow(tabbedObjects, startPosX = 10, startPosY = 10)
 
