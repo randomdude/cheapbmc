@@ -25,5 +25,15 @@ code/DvlErrLog.txt
 **/fp-info-cache
 **/fp-lib-table
 **/sym-lib-table
+**/#auto_saved_files#
+**/_autosave*
+board/cheapbmc-backups
 keys/ca
 keys/client
+
+*.FCStd1
+__pycache__
+*.gcode
+*.png
+enclosure/exported*
+enclosure/exportutils.py
